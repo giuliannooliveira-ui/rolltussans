@@ -12,12 +12,10 @@ jobs:
 
     steps:
       - name: Baixar o código do repositório
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.7
 
       - name: Configurar ambiente Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
+        uses: actions/setup-python@v5.1.1
 
       - name: Instalar dependências
         run: pip install requests
@@ -26,7 +24,7 @@ jobs:
         run: python download_ans.py
 
       - name: Salvar o arquivo baixado como Artefato
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.4
         with:
           name: TUSS-ANS-Planilha
           path: downloads/
