@@ -10,7 +10,7 @@ app = FastAPI(
 )
 
 # Coloque a sua URL Raw do GitHub aqui
-URL_PLANILHA_GITHUB = "https://raw.githubusercontent.com/giuliannooliveira-ui/rolltussans/main/downloads/TUSS_ANS.xlsx.xlsx"
+URL_PLANILHA_GITHUB = "https://raw.githubusercontent.com/giuliannooliveira-ui/rolltussans/main/downloads/TUSS_ANS.xlsx"
 
 @app.get("/")
 def home():
