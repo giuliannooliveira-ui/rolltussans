@@ -5,6 +5,10 @@ on:
     - cron: '0 11 * * 1'
   workflow_dispatch:
 
+# Dá permissão para o bot salvar arquivos no repositório
+permissions:
+  contents: write
+
 jobs:
   download_job:
     runs-on: ubuntu-latest
@@ -24,9 +28,10 @@ jobs:
       - name: Executar script de download
         run: python download_ans.py
 
-      - name: Salvar Artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: TUSS-ANS-Planilha
-          path: downloads/
-          retention-days: 30
+      - name: Salvar/Commitar alterações no GitHub
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add downloads/TUSS_ANS.xlsx
+          git commit -m "Atualiza planilha TUSS ANS [skip ci]" || echo "Sem mudanças para salvar"
+          git push
