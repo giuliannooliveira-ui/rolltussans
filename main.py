@@ -8,7 +8,7 @@ app = FastAPI(
     description="Consulta otimizada com colunas tratadas da planilha TUSS/ANS"
 )
 
-URL_PLANILHA_GITHUB = "https://raw.githubusercontent.com/giuliannoboliveira-ui/rolltussans/main/downloads/TUSS_ANS.xlsx"
+URL_PLANILHA_GITHUB = "https://github.com/giuliannooliveira-ui/rolltussans/blob/main/downloads/TUSS_ANS.xlsx"
 
 @app.get("/")
 def home():
