@@ -2,35 +2,29 @@ name: Automação Download TUSS ANS
 
 on:
   schedule:
-    # Executa toda segunda-feira às 08:00 (Horário de Brasília) / 11:00 UTC
     - cron: '0 11 * * 1'
-  workflow_dispatch: # Permite execução manual a qualquer momento
+  workflow_dispatch:
 
 jobs:
   download_job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar o código do repositório
+      - name: Baixar código do repositório
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            download_ans.py
 
-      - name: Configurar ambiente Python
+      - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
       - name: Instalar dependências
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
+        run: pip install requests urllib3
 
       - name: Executar script de download
         run: python download_ans.py
 
-      - name: Salvar o arquivo baixado como Artefato
+      - name: Salvar Artefato
         uses: actions/upload-artifact@v4
         with:
           name: TUSS-ANS-Planilha
